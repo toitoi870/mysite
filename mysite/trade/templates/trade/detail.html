@@ -1,0 +1,216 @@
+<!DOCTYPE HTML>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>trade system</title>
+    {% load static %}
+    <link rel="shortcut icon" href="{% static 'trade/icon/favicon.ico' %}" type="image/vnd.microsoft.icon">
+    <link rel="stylesheet" type="text/css" href="{% static 'trade/css/style.css' %}">
+    <script type="text/javascript" src="{% static 'trade/js/main.js' %}"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <script src="https://www.gstatic.com/charts/loader.js"></script>
+    <script type="text/javascript">
+      google.charts.load("current", {"package": ["corechart"]});
+      google.charts.setOnLoadCallback(drawChart);
+    </script>
+  </head>
+  
+  <body>
+    <header>
+      <div class="system_name">
+        株式取引シュミレーションシステム　参加者ID：{{ user_data.user_id }}
+      </div>
+    </header>
+    
+    <div class="contents">
+      <div class="left">
+        <div class="asset_info">
+          <table>
+            <tr>
+              <td align="center">種別</td>
+              <td align="center">資産</td>
+              <td align="center">保留</td>
+            </tr>
+            <tr>
+              <td align="center">資金</td>
+              <td align="center">{{ user_data.fund }}</td>
+              <td align="center">{{ user_data.reserved_fund }}</td>
+            </tr>
+            <tr>
+              <td align="center">株式</td>
+              <td align="center">{{ user_data.stock }}</td>
+              <td align="center">{{ user_data.reserved_stock }}</td>
+            </tr>
+          </table>
+        </div>
+        <div class="trade_info">
+          <div class="trade">
+            <form name="order_form" action="/trade/ajax/" method="POST">
+              {% csrf_token %}
+              <div class="trade_price">
+                <table>
+                  <tr><td>取引価格</td></tr>
+                  <tr><td align="center"><input type="text", class="price"></td></tr>
+                </table>
+              </div>
+              <div class="trade_quantity">
+                <table>
+                  <tr><td>取引量</td></tr>
+                  <tr><td align="center"><input type="text" class="quantity"></td></tr>
+                </table>
+              </div>
+              <div class="trade_select">
+                <table><tr><td><input type="radio" name="order" value="buy" checked="checked" id="radio_buy"><label for="radio_buy" class="label">購入</label><input type="radio" name="order" value="sell" id="radio_sell"><label for="radio_sell" class="label">売却</label></td></tr></table>
+              </div>
+              <div class="order_submit"><input type="submit" value="送信" class="submit_button"></div>
+            </form>
+          </div>
+          <div class="newest_info">
+            <div class="buy_price">
+              買値
+            </div>
+            <div class="sell_price">
+              売値
+            </div>
+          </div>
+        </div>
+        <div class="order">
+          <table>
+            <tr>
+              <td align="center" width="30%" colspan="4">時間</td>
+              <td align="center" width="20%">価格</td>
+              <td align="center" width="20%">数量</td>
+              <td align="center" width="20%">取消</td>
+            </tr>
+            <tr>
+              <td align="center">10</td>
+              <td align="center">分</td>
+              <td align="center">30</td>
+              <td align="center">秒</td>
+              <td align="center">300</td>
+              <td align="center">10</td>
+              <td align="center">×</td>
+            </tr>
+            <tr>
+              <td align="center">10</td>
+              <td align="center">分</td>
+              <td align="center">30</td>
+              <td align="center">秒</td>
+              <td align="center">300</td>
+              <td align="center">10</td>
+              <td align="center">×</td>
+            </tr>
+            <tr>
+              <td align="center">10</td>
+              <td align="center">分</td>
+              <td align="center">30</td>
+              <td align="center">秒</td>
+              <td align="center">300</td>
+              <td align="center">10</td>
+              <td align="center">×</td>
+            </tr>
+            <tr>
+              <td align="center">10</td>
+              <td align="center">分</td>
+              <td align="center">30</td>
+              <td align="center">秒</td>
+              <td align="center">300</td>
+              <td align="center">10</td>
+              <td align="center">×</td>
+            </tr>
+            <tr>
+              <td align="center">10</td>
+              <td align="center">分</td>
+              <td align="center">30</td>
+              <td align="center">秒</td>
+              <td align="center">300</td>
+              <td align="center">10</td>
+              <td align="center">×</td>
+            </tr>
+          </table>
+        </div>
+      </div>
+
+      <div class="right">
+        <div class="time">
+          <div class="start_time">
+            開始時刻　
+          </div>
+          <div class="now_time">
+            現在時刻
+          </div>
+          <div class="finish_time">
+            終了時刻　
+          </div>
+        </div>
+        <div class="chart">
+          チャート
+        </div>
+        <div class="history_title">
+          最新５件の取引履歴
+        </div>
+        <div class="history">
+          <div class="trade_result">
+            <table>
+              <tr>
+                <td align="center" width="40%" colspan="4">時間</td>
+                <td align="center" width="20%">買値</td>
+                <td align="center" width="20%">売値</td>
+                <td align="center" width="20%">数量</td>
+              </tr>
+              <tr>
+                <td align="center">10</td>
+                <td align="center">分</td>
+                <td align="center">30</td>
+                <td align="center">秒</td>
+                <td align="center">300</td>
+                <td align="center">300</td>
+                <td align="center">10</td>
+              </tr>
+              <tr>
+                <td align="center">10</td>
+                <td align="center">分</td>
+                <td align="center">30</td>
+                <td align="center">秒</td>
+                <td align="center">300</td>
+                <td align="center">300</td>
+                <td align="center">10</td>
+              </tr>
+              <tr>
+                <td align="center">10</td>
+                <td align="center">分</td>
+                <td align="center">30</td>
+                <td align="center">秒</td>
+                <td align="center">300</td>
+                <td align="center">300</td>
+                <td align="center">10</td>
+              </tr>
+              <tr>
+                <td align="center">10</td>
+                <td align="center">分</td>
+                <td align="center">30</td>
+                <td align="center">秒</td>
+                <td align="center">300</td>
+                <td align="center">300</td>
+                <td align="center">10</td>
+              </tr>
+              <tr>
+                <td align="center">10</td>
+                <td align="center">分</td>
+                <td align="center">30</td>
+                <td align="center">秒</td>
+                <td align="center">300</td>
+                <td align="center">300</td>
+                <td align="center">10</td>
+              </tr>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+    <footer>
+<!--      <a href="{% url 'trade:index' %}">参加者一覧へ戻る</a>-->
+    </footer>
+  </body>
+</html>

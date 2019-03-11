@@ -1,0 +1,30 @@
+<!DOCTYPE HTML>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>trade system</title>
+    {% load static %}
+    <link rel="shortcut icon" href="{% static 'trade/icon/favicon.ico' %}" type="image/vnd.microsoft.icon">
+    <link rel="stylesheet" type="text/css" href="{% static 'trade/css/style.css' %}">
+    <script type="text/javascript" src="{% static 'trade/js/main.js' %}"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <script src="https://www.gstatic.com/charts/loader.js"></script>
+    <script type="text/javascript">
+      google.charts.load("current", {"package": ["corechart"]});
+      google.charts.setOnLoadCallback(drawChart);
+    </script>
+  </head>
+
+  <body>
+    <header>
+      <div class="system_name">
+        株式取引シュミレーションシステム　参加者ID：{{ user_data.user_id }}
+      </div>
+    </header>
+
+
+    <footer>
+<!--      <a href="{% url 'trade:index' %}">参加者一覧へ戻る</a>-->
+    </footer>
+  </body>
+</html>
