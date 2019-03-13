@@ -28,7 +28,7 @@ header {
 }
 
 .contents {
-  height: 95%;
+  height: 90%;
   width: 95%;
   margin: auto;
 }
@@ -233,7 +233,7 @@ input[type=radio]:checked + label {
 }
 
 footer {
-  height: 0%;
+  height: 5%;
 }
 
 table {
