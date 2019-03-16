@@ -61,20 +61,20 @@ header {
   font-family: serif;
 }
 
-.trade_price {
+/* .trade_price {
   height: 30%;
   width: 100%;
   font-size: 4vh;
   font-family: serif;
   text-align: center;
-}
+} */
 
-.price {
+/* .price {
   width: 80%;
   border-radius: 5px;
   font-size: 4vh;
   text-align: center;
-}
+} */
 
 .trade_quantity {
   height: 30%;
@@ -146,27 +146,27 @@ input[type=radio]:checked + label {
   float: right;
 }
 
-.buy_price {
+/* .buy_price {
   height: 50%;
   width: 100%;
   font-size: 5vh;
   font-family: serif;
-}
+} */
 
-.sell_price {
+/* .sell_price {
   height: 50%;
   width: 100%;
   font-size: 5vh;
   font-family: serif;
-}
+} */
 
-.order {
+/* .order {
   height: 25%;
   width: 100%;
   background-color: #22292F;
   font-size: 2vh;
   font-family: serif;
-}
+} */
 
 .right {
   height: 100%;
@@ -212,25 +212,25 @@ input[type=radio]:checked + label {
   background-color: black;
 }
 
-.history_title {
+/* .history_title {
   height: 4%;
   width: 100%;
   font-size: 2vh;
   text-align: center;
-}
+} */
 
-.history {
+/* .history {
   height: 21%;
   width: 100%;
-}
+} */
 
-.trade_result {
+/* .trade_result {
   height: 100%;
   width: 50%;
   font-size: 2vh;
   font-family: serif;
   margin: auto;
-}
+} */
 
 footer {
   height: 5%;
